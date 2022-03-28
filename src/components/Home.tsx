@@ -2,12 +2,42 @@ import Chart from "react-apexcharts";
 
 const series = [
   {
-    name: "total",
-    data: [3000, 4000, 4000, 5000, 4000, 6000, 7000, 5000],
+    name: "Total",
+    data: [
+      9000,
+      7500,
+      6200,
+      12000,
+      8750,
+      13000,
+      7500,
+      5500,
+      9000,
+      7500,
+      null,
+      null,
+    ],
   },
   {
-    name: "investment",
-    data: [8000, 7000, 2000, 9000, 1000, 8000, 7000, 4000],
+    name: "Investment",
+    data: [
+      8000,
+      7000,
+      4000,
+      9000,
+      8000,
+      8000,
+      7000,
+      4000,
+      8000,
+      7000,
+      null,
+      null,
+    ],
+  },
+  {
+    name: "Profit",
+    data: [1000, 500, 1200, 3000, 5750, 5000, 500, 1500, 1000, 500, null, null],
   },
 ];
 
@@ -36,14 +66,15 @@ const options = {
     zoom: {
       enabled: false,
     },
+    showForNullSeries: true,
   },
   tooltip: {
-    shared: false,
+    shared: true,
     custom: function ({ series, seriesIndex, dataPointIndex, w }) {
       const value = series[seriesIndex][dataPointIndex];
-      const valueFormated = new Intl.NumberFormat("USA", {
+      const valueFormated = new Intl.NumberFormat("pt-BR", {
         style: "currency",
-        currency: "USD",
+        currency: "BRL",
       }).format(value);
       return `
         <div class="arrow_box"> 
@@ -58,10 +89,12 @@ const options = {
       `;
     },
   },
-  colors: ["#2E23fA", "#6fDAf6", "#546E7A", "#E91E63", "#FF9800"],
+  colors: ["#2B5EDE", "#828489", "#2BCFC5"],
   stroke: {
     curve: "straight",
-    width: 1,
+    // curve: "smooth straight",
+    width: 2,
+    lineCap: "square",
   },
   dataLabels: {
     enabled: false,
@@ -74,32 +107,44 @@ const options = {
   xaxis: {
     type: "category",
     categories: months,
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
   },
   yaxis: {
     labels: {
       formatter: function (value: number) {
-        return new Intl.NumberFormat("USA", {
+        return new Intl.NumberFormat("pt-BR", {
           style: "currency",
-          currency: "USD",
+          currency: "BRL",
         }).format(value);
       },
     },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
   },
   fill: {
-    opacity: 0.3,
+    opacity: 1,
     type: "gradient",
     gradient: {
-      shade: "dark",
-      opacityFrom: 0.7,
-      opcityTo: 0.3,
+      shade: "light",
+      opacityFrom: [0.7, 0, 0.7],
+      opacityTo: 0,
     },
   },
   markers: {
     hover: {
-      size: 4,
+      size: 3,
     },
   },
 };
 export function Home() {
-  return <Chart options={options} series={series} type="area" width={400} />;
+  return <Chart options={options} series={series} type="area" width={800} />;
 }

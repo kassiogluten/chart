@@ -10,7 +10,7 @@
 }
 
 .arrow_box .series_name {
-  background: red;
+  background: #111;
   width: 100%;
   height: 100%;
   padding: 0.5rem;
@@ -25,7 +25,7 @@
 }
 
 .arrow_box .values {
-  background: blue;
+  background: #333;
   width: 100%;
   height: 100%;
   padding: 0.5rem;
@@ -39,15 +39,7 @@
   font-weight: medium;
 }
 
-.arrow-down:before {
-  position: absolute;
-  right: 50%;
-  content: " ";
-  width: 0; 
-  height: 0; 
-  border-top: 10px solid black;
-  border-left: 10px solid transparent;
-}
+
 
 .apexcharts-xaxistooltip {
   opacity: 0;
